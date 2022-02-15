@@ -1,0 +1,55 @@
+﻿<Window x:Class="SimulacroExamen.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimulacroExamen"
+        mc:Ignorable="d"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Normal"
+        FontFamily="{materialDesign:MaterialDesignFont}"
+        
+        WindowStartupLocation="CenterScreen"
+        
+        Title="Tasks Reminder" Height="450" Width="550">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/SimulacroExamen;component/MiEstilo.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.ColumnSpan="2" Content="Gestor de Tareas" Style="{StaticResource Titulo}"/>
+
+        <TextBox x:Name="numID" Grid.Row="1" Grid.Column="0" Margin="6" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 Text="{Binding ElementName=tareasDataGrid, Path=SelectedItem.ID}"/>
+        <TextBox x:Name="tareaTextBox" Grid.Row="1" Grid.Column="1" Margin="6" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 Text="{Binding ElementName=tareasDataGrid, Path=SelectedItem.TASKNAME}" 
+                 materialDesign:HintAssist.Hint="Nueva Tarea"/>
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="crearBtn" Margin="8" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Click="click_crearTarea">Crear Tarea</Button>
+            <Button x:Name="editarBtn" Margin="8" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Click="click_editarTarea">Editar Tarea</Button>
+            <Button x:Name="borrarBtn" Margin="8" Style="{DynamicResource MaterialDesignRaisedDarkButton}" Click="click_borrarTarea">Tarea Completada</Button>
+        </StackPanel>
+
+        <DataGrid x:Name="tareasDataGrid" Grid.Row="3" Grid.ColumnSpan="2"/>                </Grid>
+</Window>
